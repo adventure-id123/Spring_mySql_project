@@ -48,7 +48,7 @@ pipeline {
             steps {
                 script {
                     sh 'docker rm -f myspring'
-                    sh 'docker run -it -d --name myspring -p 1234:1234 locker0105/myspring:latest'
+                    sh 'docker run -it -d --name myspring -p 5678:1234 locker0105/myspring:latest'
                 }
             }
         }

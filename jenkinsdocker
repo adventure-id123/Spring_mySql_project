@@ -16,8 +16,8 @@ pipeline {
             steps {
                 script {
                     sh 'docker build -t deploy .'
-                    sh 'docker tag deploy locker0105/mytask:$BUILD_ID'
-                    sh 'docker tag deploy locker0105/mytask:latest'
+                    sh 'docker tag deploy locker0105/myspring:$BUILD_ID'
+                    sh 'docker tag deploy locker0105/myspring:latest'
                 }
             }
         }
@@ -36,10 +36,10 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    sh 'docker push locker0105/mytask:$BUILD_ID'
-                    sh 'docker push locker0105/mytask:latest'
-                    sh 'docker rmi -f locker0105/mytask:$BUILD_ID'
-                    sh 'docker rmi -f locker0105/mytask:latest'
+                    sh 'docker push locker0105/myspring:$BUILD_ID'
+                    sh 'docker push locker0105/myspring:latest'
+                    sh 'docker rmi -f locker0105/myspring:$BUILD_ID'
+                    sh 'docker rmi -f locker0105/myspring:latest'
                 }
             }
         }
@@ -47,8 +47,8 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh 'docker rm -f mytask'
-                    sh 'docker run -it -d --name mytask -p 1234:1234 locker0105/mytask:latest'
+                    sh 'docker rm -f myspring'
+                    sh 'docker run -it -d --name myspring -p 1234:1234 locker0105/myspring:latest'
                 }
             }
         }
